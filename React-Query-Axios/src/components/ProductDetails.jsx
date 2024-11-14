@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const retrieveProduct = async ({ queryKey }) => {
-  console.log(queryKey);
   const response = await axios.get(
     `http://localhost:3000/${queryKey[0]}/${queryKey[1]}`
   );

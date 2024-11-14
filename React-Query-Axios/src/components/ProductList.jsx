@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useContext } from "react";
+import { ProductIDContext } from "../context";
 
 const retrieveProducts = async ({ queryKey }) => {
   const response = await axios.get(`http://localhost:3000/${queryKey[0]}`);
@@ -7,6 +9,8 @@ const retrieveProducts = async ({ queryKey }) => {
 };
 
 export default function ProductList() {
+  const { handleShowDetail } = useContext(ProductIDContext);
+
   const {
     data: products,
     error,
@@ -35,6 +39,12 @@ export default function ProductList() {
                 alt={product.title}
               />
               <p className="text-xl my-3">{product.title}</p>
+              <button
+                className="bg-slate-200 text-blue-500 p-3 w-full h-full"
+                onClick={() => handleShowDetail(product.id)}
+              >
+                Show Details
+              </button>
             </li>
           ))}
       </ul>

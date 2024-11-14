@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
+import ProductIDProvider from "./Provider/ProductIdProvider.jsx";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -15,7 +16,9 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ProductIDProvider>
+        <App />
+      </ProductIDProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </StrictMode>
